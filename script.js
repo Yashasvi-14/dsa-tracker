@@ -1,7 +1,9 @@
+document.addEventListener("DOMContentLoaded",()=>{
 const form=document.getElementById("problem-form");
 const problemsList=document.getElementById("problems-list");
 
-let problems=[];
+let problems= JSON.parse(localStorage.getItem("problems")) || [];
+renderProblems();
 
 form.addEventListener("submit",function(e){
     e.preventDefault();
@@ -23,6 +25,7 @@ form.addEventListener("submit",function(e){
     };
 
     problems.push(problem);
+    localStorage.setItem("problems", JSON.stringify(problems));
 
     renderProblems();
 
@@ -31,11 +34,11 @@ form.addEventListener("submit",function(e){
 
 function renderProblems(){
     problemsList.innerHTML="";
-    problems.forEach((problem, index) => {
+    problems.forEach((problem) => {
     const div = document.createElement("div");
     div.className = "problem-card";
     div.innerHTML=`
-    <strong>${problrm.name}</strong> <br>
+    <strong>${problem.name}</strong> <br>
     Topic: ${problem.topic} <br>
     Status: ${problem.status}
     `;
@@ -43,3 +46,4 @@ function renderProblems(){
     problemsList.appendChild(div);
 });
 }
+});
