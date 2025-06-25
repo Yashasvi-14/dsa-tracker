@@ -34,16 +34,22 @@ form.addEventListener("submit",function(e){
 
 function renderProblems(){
     problemsList.innerHTML="";
-    problems.forEach((problem) => {
+    problems.forEach((problem,index) => {
     const div = document.createElement("div");
     div.className = "problem-card";
     div.innerHTML=`
     <strong>${problem.name}</strong> <br>
     Topic: ${problem.topic} <br>
-    Status: ${problem.status}
+    Status: ${problem.status} <br>
+    <button onclick="deleteProblem(${index})">❌ Delete</button>
     `;
 
     problemsList.appendChild(div);
 });
+}
+window.deleteProblem=function(index){
+    problems.splice(index,1);
+    localStorage.setItem("problems",JSON.stringify(problems));
+    renderProblems();
 }
 });
