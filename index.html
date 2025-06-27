@@ -15,7 +15,8 @@
         <h2>Add New Problem</h2>
         <form id="problem-form">
             <input type="text" id="problem-name" placeholder="Problem Name" required>
-
+            
+            <label for="topic">Topic:</label>
             <select id="topic">
                     <option value="">Select Topic</option>
                     <option value="Arrays">Arrays</option>
@@ -36,12 +37,21 @@
                     <option value="Strings">Strings</option>
                     <option value="Tries">Tries</option>
             </select>
-
+            
+            <label for="status">Status:</label>
             <select id="status">
                 <option value="">Status</option>
                 <option value="Unsolved">Unsolved</option>
                 <option value="Solved">Solved</option>
                 <option value="Revise">Revise</option>
+            </select>
+
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+                <option value="">Select Difficulty</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
             </select>
 
             <button type="submit">Add Problem</button>
@@ -80,6 +90,9 @@
                 <option value="Solved">Solved</option>
                 <option value="Revise">Revise</option>
             </select>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by title...">
         </div>
         <div id="problems-list">
 
