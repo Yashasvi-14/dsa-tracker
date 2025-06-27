@@ -1,7 +1,11 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f7f7f7;
+  background: #f2f2f2;
+  margin: 0;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -23,10 +27,15 @@ input, select, button {
   padding: 10px;
   margin-top: 10px;
 }
-
+ form, #problems-list{
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+ }
 .problem-card {
-  background: #e9f5ff;
+  background: #fff;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
