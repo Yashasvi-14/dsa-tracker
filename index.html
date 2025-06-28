@@ -90,6 +90,16 @@
                 <option value="Solved">Solved</option>
                 <option value="Revise">Revise</option>
             </select>
+            <label for="sort-select">Sort By:</label>
+            <select id="sort-select">
+                <option value="">Sort By</option>
+                <option value="title-asc">Title (A-Z)</option>
+                <option value="title-desc">Title (Z-A)</option>
+                <option value="difficulty-asc">Difficulty (Easy → Hard)</option>
+                <option value="difficulty-desc">Difficulty (Hard → Easy)</option>
+                <option value="status-asc">Status (Unsolved → Solved)</option>
+                <option value="status-desc">Status (Solved → Unsolved)</option>
+            </select>
         </div>
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Search by title...">
