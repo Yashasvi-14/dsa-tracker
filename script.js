@@ -77,8 +77,8 @@ function renderProblems(data = problems) {
         div.innerHTML = `
             <strong>${problem.name}</strong> <br>
             Topic: ${problem.topic} <br>
-            Status: <span class="status ${problem.status.toLowerCase().replace(" ", "-")}">${problem.status}</span> <br>
-            Difficulty: ${problem.difficulty} <br>
+            Status: <span class="status ${problem.status.toLowerCase()}">${problem.status}</span> <br>
+            Difficulty: <span class="difficulty ${problem.difficulty.toLowerCase()}">${problem.difficulty}</span> <br>
             <button onclick="deleteProblem(${index})">❌ Delete</button>
             <button onclick="editProblem(${index})">✏️ Edit</button>
         `;
