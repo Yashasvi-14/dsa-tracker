@@ -1,0 +1,114 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+}
+.form-section{
+  width: 800px;
+}
+.tracker-display{
+  width: 800px;
+}
+.form-section, .tracker-display {
+  background: white;
+  padding: 20px;
+  margin: 20px auto;
+    border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input, select, button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+ 
+.problem-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ 
+}
+input:focus, select:focus, button:focus{
+  outline: 2px solid #007bff;
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+button{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border-radius: 6px;
+}
+button:hover{
+  background-color: #0056b3;
+}
+
+input,select{
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+.status {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: white;
+  font-weight: bold;
+}
+
+.status.solved {
+  background-color: green;
+}
+
+.status.unsolved {
+  background-color: red;
+}
+
+.status.revise {
+  background-color: orange;
+}
+
+.difficulty{
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 10px;
+}
+.difficulty.easy{
+  background-color: #2ecc71;
+}
+.difficulty.medium{
+  background-color: #f1c40f;
+}
+.difficulty.hard{
+  background-color: #e74c3c;
+}
+
+.problem-card{
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+}
+

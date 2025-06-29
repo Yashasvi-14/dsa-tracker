@@ -1,20 +1,31 @@
 //initializes the Express application
-require('dotenv').config();
-const express=require("express");
-const connectDB=require('./config/db');
-const app=express();
+const express=require('express');
+const mongoose=require('mongoose');
+const dotenv=require('dotenv');
+const path = require("path");
 
+const app=express();
+dotenv.config();
+
+const connectDB=require('./config/db');
 connectDB();
-//let us send/receive JSON data
+
 app.use(express.json());
-//sets up a route for the homepage
-app.use('/api/problems',require('./routes/problems'));
-app.get("/",(req,res)=>{
-    res.send("Welcome to the DSA Tracker backend!");
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, "frontend")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "index.html"));
 });
-//Starts the server and listens on a port
-const PORT=process.env.PORT || 5000;
-app.listen(PORT, ()=>{
-    console.log(`Server is running on port ${PORT}`);
+
+
+// API routes
+const problems = require('./routes/problems');
+app.use('/api/problems', problems);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 

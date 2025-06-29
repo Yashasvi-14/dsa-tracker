@@ -5,10 +5,19 @@ const ProblemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  topic: {
+    type: String,
+    required: true
+  },
+  difficulty: {
+    type: String,
+    enum: ['Easy', 'Medium', 'Hard'],
+    default: 'Easy'
+  },
   status: {
     type: String,
-    enum: ['Not Started', 'In Progress', 'Completed'],
-    default: 'Not Started'
+    enum: ['Unsolved', 'Revise', 'Solved'],
+    default: 'Unsolved'
   },
   tags: [String],
   date: {
@@ -16,5 +25,7 @@ const ProblemSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+
 
 module.exports = mongoose.model('Problem', ProblemSchema);
