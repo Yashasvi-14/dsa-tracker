@@ -114,45 +114,35 @@ searchInput.addEventListener("input", () => {
   renderProblems(searched);
 });
 
-function getDifficultyValue(level) {
-    switch (level.toLowerCase()) {
-        case "easy": return 1;
-        case "medium": return 2;
-        case "hard": return 3;
-        default: return 0;
-    }
-}
-function getStatusValue(status) {
-    switch (status.toLowerCase()) {
-        case "unsolved": return 1;
-        case "revise": return 2;
-        case "solved": return 3;
-        default: return 0;
-    }
-}
+const difficultyOrder = { "Easy": 1, "Medium": 2, "Hard": 3 };
+const statusOrder = { "Unsolved": 1, "Revise": 2, "Solved": 3 };
 
-sortSelect.addEventListener("change", function(){
-    const value=this.value;
-    problems.sort((a,b)=>{
-        switch(value){
-            case "title-asc":
-                return a.name.localeCompare(b.name);
-            case "title-desc":
-                return b.name.localeCompare(a.name);
-            case "difficulty-asc":
-                return getDifficultyValue(a.difficulty) - getDifficultyValue(b.difficulty);
-            case "difficulty-desc":
-                return  getDifficultyValue(b.difficulty) - getDifficultyValue(a.difficulty);
-            case "status-asc":
-                return getStatusValue(a.status) - getStatusValue(b.status);
-            case "status-desc":
-                return getStatusValue(b.status) - getStatusValue(a.status);
-            default:
-                return 0;
-        }
-    });
-    renderProblems();
+sortSelect.addEventListener("change", function () {
+  const value = this.value;
+
+  problems.sort((a, b) => {
+    switch (value) {
+      case "title-asc":
+        return a.name.localeCompare(b.name);
+      case "title-desc":
+        return b.name.localeCompare(a.name);
+      case "difficulty-asc":
+        return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+      case "difficulty-desc":
+        return difficultyOrder[b.difficulty] - difficultyOrder[a.difficulty];
+      case "status-asc":
+        return statusOrder[a.status] - statusOrder[b.status];
+      case "status-desc":
+        return statusOrder[b.status] - statusOrder[a.status];
+      default:
+        return 0;
+    }
+  });
+
+  renderProblems();
 });
+
+
 
 });
 
