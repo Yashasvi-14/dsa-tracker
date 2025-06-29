@@ -1,9 +1,14 @@
 //initializes the Express application
+require('dotenv').config();
 const express=require("express");
+const connectDB=require('./config/db');
 const app=express();
+
+connectDB();
 //let us send/receive JSON data
 app.use(express.json());
 //sets up a route for the homepage
+app.use('/api/problems',require('./routes/problems'));
 app.get("/",(req,res)=>{
     res.send("Welcome to the DSA Tracker backend!");
 });
@@ -13,14 +18,3 @@ app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
 });
 
-const mongoose=require('mongoose');
-require('dotenv').config();
-
-mongoose.connect(process.env.MONG0_URI,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(()=>{
-    console.log("MongoDB connected");
-}).catch(err=>{
-    console.error("MongoDB connection error:",err);
-});
