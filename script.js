@@ -141,8 +141,5 @@ sortSelect.addEventListener("change", function () {
 
   renderProblems();
 });
-
-
-
 });
 
