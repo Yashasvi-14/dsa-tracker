@@ -11,6 +11,7 @@ const searchInput=document.getElementById("searchInput");
 const sortSelect=document.getElementById("sort-select");
 
 let problems= [];
+function fetchProblems(){
 fetch('/api/problems')
   .then(res => res.json())
   .then(data => {
@@ -21,6 +22,7 @@ fetch('/api/problems')
     console.error("Error fetching problems:", err);
     alert("Failed to load problems from server.");
   });
+}
 
 let editingIndex=-1;
 
@@ -46,6 +48,7 @@ form.addEventListener("submit", function (e) {
     date: new Date()
   
   };
+
 
   // Currently skipping edit feature in backend (will add later)
   if (editingIndex !== -1) {
@@ -125,16 +128,20 @@ function renderProblems() {
         return;
     }
 
-    filtered.forEach(problem => {
-      const index=problems.findIndex(p=>p.__id===problem.__id);
-        const div = document.createElement("div");
-        div.className = "problem-card";
-        div.innerHTML = `
-            <strong>${problem.title}</strong> <br>
-            Topic: ${problem.topic} <br>
-            Status: <span class="status ${problem.status?.toLowerCase()}">${problem.status}</span> <br>
-            Difficulty: <span class="difficulty ${problem.difficulty?.toLowerCase()}">${problem.difficulty}</span> <br>
-        `;
+     filtered.forEach(problem => {
+  const { _id, title, topic, status, difficulty } = problem;
+  const div = document.createElement("div");
+  div.className = "problem-card";
+  div.id = `problem-${_id}`;
+  div.innerHTML = `
+      <strong>${title}</strong> <br>
+      Topic: ${topic} <br>
+      Status: <span class="status ${status?.toLowerCase()}">${status}</span> <br>
+      Difficulty: <span class="difficulty ${difficulty?.toLowerCase()}">${difficulty}</span> <br>
+      <button onclick="markAsSolved('${_id}')">✅ Solved</button>
+      <button onclick="markForRevision('${_id}')">🔁 Revise</button>
+  `;
+
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "❌ Delete";
     deleteButton.className="delete-btn";
@@ -172,6 +179,40 @@ function deleteProblem(id) {
       alert("Could not delete the problem.");
     });
 }
+window.markAsSolved=async function(id)
+ {
+    try {
+        const res = await fetch(`/api/problems/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'Solved' })
+        });
+        if (res.ok) {
+            await fetchProblems(); // Refresh UI after update
+        } else {
+            console.error('Failed to update status');
+        }
+    } catch (error) {
+        console.error('Error marking as solved:', error);
+    }
+}
+
+window.markForRevision=async function(id) {
+    try {
+        const res = await fetch(`/api/problems/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'Revise' })
+        });
+        if (res.ok) {
+            await fetchProblems(); // Refresh UI after update
+        } else {
+            console.error('Failed to update status');
+        }
+    } catch (error) {
+        console.error('Error marking for revision:', error);
+    }
+}
 
 
 
@@ -184,6 +225,8 @@ window.editProblem=function(index){
     editingIndex=index;
     form.querySelector("button").innerText="Update Problem";
 };
+
+
 
 searchInput.addEventListener("input", renderProblems);
 filterTopic.addEventListener("change", renderProblems);
