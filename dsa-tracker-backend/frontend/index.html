@@ -5,65 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DSA Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <header>
-        <h1>DSA Tracker</h1>
+        <h1 class="text-3xl font-bold text-center text-blue-600 mt-4">DSA Tracker</h1>
     </header>
 
-    <section class="form-section">
-        <h2>Add New Problem</h2>
-        <form id="problem-form">
-            <input type="text" id="problem-name" placeholder="Problem Name" required>
+    <div class="max-w-6xl mx-auto px-4 py-6 space-y-4 bg-white p-6 rounded-xl shadow-md mt-6">
+        <section class="w-full">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Add New Problem</h2>
+        <div class="bg-white rounded-xl shadow p-4">
+        <form id="form">
+        <input type="text" id="problem-name" placeholder="Problem Name"
+            class="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+        <label class="block text-sm text-gray-700 mb-1">Topic:</label>
+        <select id="problem-topic"
+            class="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <option value="">Select Topic</option>
+        <option value="Arrays">Arrays</option>
+        <option value="Basics">Basics</option>
+        <option value="Binary Search">Binary Search</option>
+        <option value="Binary Search Trees">Binary Search Trees</option>
+        <option value="Binary Trees">Binary Trees</option>
+        <option value="Bit Manipulation">Bit Manipulation</option>
+        <option value="Dynamic Programming">Dynamic Programming</option>
+        <option value="Graphs">Graphs</option>
+        <option value="Greedy Algorithms">Greedy Algorithms</option>
+        <option value="Heaps">Heaps</option>
+        <option value="LinkedList">Linked List</option>
+        <option value="Recursion">Recursion</option>
+        <option value="Sliding Window & Two Pointers">Sliding Window & Two Pointers</option>
+         <option value="Sorting Techniques">Sorting Techniques</option>
+         <option value="Stack and Queues">Stack and Queues</option>
+        <option value="Strings">Strings</option>
+        <option value="Tries">Tries</option>
+    </select>
             
-            <label for="topic">Topic:</label>
-            <select id="topic">
-                    <option value="">Select Topic</option>
-                    <option value="Arrays">Arrays</option>
-                    <option value="Basics">Basics</option>
-                    <option value="Binary Search">Binary Search</option>
-                    <option value="Binary Search Trees">Binary Search Trees</option>
-                    <option value="Binary Trees">Binary Trees</option>
-                    <option value="Bit Manipulation">Bit Manipulation</option>
-                    <option value="Dynamic Programming">Dynamic Programming</option>
-                    <option value="Graphs">Graphs</option>
-                    <option value="Greedy Algorithms">Greedy Algorithms</option>
-                    <option value="Heaps">Heaps</option>
-                    <option value="LinkedList">Linked List</option>
-                    <option value="Recursion">Recursion</option>
-                    <option value="Sliding Window & Two Pointers">Sliding Window & Two Pointers</option>
-                    <option value="Sorting Techniques">Sorting Techniques</option>
-                    <option value="Stack and Queues">Stack and Queues</option>
-                    <option value="Strings">Strings</option>
-                    <option value="Tries">Tries</option>
-            </select>
-            
-            <label for="status">Status:</label>
-            <select id="status">
+            <label class="block text-sm text-gray-700 mb-1">Status:</label>
+  <select id="problem-status"
+          class="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 <option value="">Status</option>
                 <option value="Unsolved">Unsolved</option>
                 <option value="Solved">Solved</option>
                 <option value="Revise">Revise</option>
             </select>
 
-            <label for="difficulty">Difficulty:</label>
-            <select id="difficulty">
-                <option value="">Select Difficulty</option>
+            <label class="block text-sm text-gray-700 mb-1">Difficulty:</label>
+  <select id="problem-difficulty"
+          class="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <option value="">Select Difficulty</option>
                 <option value="Easy">Easy</option>
                 <option value="Medium">Medium</option>
                 <option value="Hard">Hard</option>
             </select>
 
-            <button type="submit">Add Problem</button>
+            <button id="add-problem"
+          class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Add Problem</button>
         </form>
+    </div>
     </section>
-    
-    <section class="tracker-display">
-        <h2>Your DSA Problems</h2>
-        <div id="filters">
-            <label for="filter-topic">Filter by Topic:</label>
-            <select id="filter-topic">
-                <option value="">All</option>
+
+    <section class="w-full">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800">Your DSA Problems</h2>
+ <div class="max-w-6xl mx-auto px-4 bg-white p-6 rounded-xl shadow-md mt-6">
+  <label class="block text-sm text-gray-700 mb-1">Filter by Topic:</label>
+  <select id="filter-topic"
+          class="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <option value="">All</option>
                 <option value="Arrays">Arrays</option>
                 <option value="Basics">Basics</option>
                 <option value="Binary Search">Binary Search</option>
@@ -83,16 +95,19 @@
                 <option value="Tries">Tries</option>
             </select>
 
-            <label for="filter-status">Filter by Status:</label>
-            <select id="filter-status">
-                <option value="">Status</option>
+            <label class="block text-sm text-gray-700 mb-1">Filter by Status:</label>
+  <select id="filter-status"
+          class="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <option value="">Status</option>
                 <option value="Unsolved">Unsolved</option>
                 <option value="Solved">Solved</option>
                 <option value="Revise">Revise</option>
             </select>
-            <label for="sort-select">Sort By:</label>
-            <select id="sort-select">
-                <option value="">Sort By</option>
+          
+            <label class="block text-sm text-gray-700 mb-1">Sort By:</label>
+  <select id="sort-by"
+          class="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <option value="">Sort By</option>
                 <option value="title-asc">Title (A-Z)</option>
                 <option value="title-desc">Title (Z-A)</option>
                 <option value="difficulty-asc">Difficulty (Easy → Hard)</option>
@@ -100,15 +115,17 @@
                 <option value="status-asc">Status (Unsolved → Solved)</option>
                 <option value="status-desc">Status (Solved → Unsolved)</option>
             </select>
+        
+        
+        <input type="text" id="search-box" placeholder="Search by title..."
+         class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <div id="problems-list" class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-6"></div>
         </div>
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search by title...">
-        </div>
-        <div id="problems-list">
+        </section>
 
-        </div>
-    </section>
+    
+    </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
