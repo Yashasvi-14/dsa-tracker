@@ -19,6 +19,10 @@ const ProblemSchema = new mongoose.Schema({
     enum: ['Unsolved', 'Revise', 'Solved'],
     default: 'Unsolved'
   },
+  notes:{
+    type: String,
+    default: "",
+  },
   tags: [String],
   date: {
     type: Date,

@@ -34,6 +34,8 @@ form.addEventListener("submit", function (e) {
   const topic = document.getElementById("problem-topic").value;
   const status = document.getElementById("problem-status").value;
   const difficulty = document.getElementById("problem-difficulty").value;
+  const notes = document.getElementById("problem-notes").value.trim();
+
 
   if (!name || !topic || !status || !difficulty) {
     alert("Please fill all fields.");
@@ -45,6 +47,7 @@ form.addEventListener("submit", function (e) {
     topic,
     status,
     difficulty,
+    notes,
     tags: [],
     date: new Date()
   
@@ -165,7 +168,7 @@ function renderProblems() {
     }
 
      filtered.forEach(problem => {
-  const { _id, title, topic, status, difficulty } = problem;
+  const { _id, title, topic, status, difficulty,notes } = problem;
   const card = document.createElement("div");
   card.id = `problem-${_id}`;
 
@@ -215,6 +218,7 @@ editBtn.onclick = () => {
   document.getElementById("problem-topic").value = topic;
   document.getElementById("problem-status").value = status;
   document.getElementById("problem-difficulty").value = difficulty;
+  document.getElementById("problem-notes").value = notes || ""; 
   editingIndex = problems.findIndex(p => p._id === _id);
   // Store _id temporarily on the form element for update
   form.setAttribute("data-edit-id", _id);
@@ -238,8 +242,11 @@ if (isToday) {
   // inside title line
   card.querySelector('h2').innerHTML += ` <span class="ml-2 text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">🆕 Today</span>`;
 }
+  const notesElement = document.createElement("p");
+notesElement.className = "mt-2 text-sm text-gray-700";
+notesElement.textContent = `📝 Notes: ${problem.notes || "No notes"}`;
+card.appendChild(notesElement);
 
-        
     problemsList.appendChild(card);
   });
 }
@@ -301,6 +308,8 @@ window.editProblem=function(index){
     document.getElementById("topic").value=problem.topic;
     document.getElementById("status").value=problem.status;
     document.getElementById("difficulty").value=problem.difficulty;
+    document.getElementById("problem-notes").value = problem.notes || "";
+
     editingIndex=index;
     form.querySelector("button").innerText="Update Problem";
 };

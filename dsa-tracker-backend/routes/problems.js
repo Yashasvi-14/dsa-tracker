@@ -11,8 +11,8 @@ router.get('/', async (req, res) => {
 
 // @route   POST /api/problems
 router.post('/', async (req, res) => {
-  const { title, topic, status, difficulty, tags } = req.body;
-  const newProblem = new Problem({ title, topic, status, difficulty, tags });
+  const { title, topic, status, difficulty,notes, tags } = req.body;
+  const newProblem = new Problem({ title, topic, status, difficulty,notes,tags });
   await newProblem.save();
   res.json(newProblem);
 });
@@ -32,10 +32,10 @@ router.delete('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const { title, topic, status, difficulty, tags } = req.body;
+    const { title, topic, status, difficulty,notes, tags } = req.body;
     const updatedProblem = await Problem.findByIdAndUpdate(
       req.params.id,
-      { title, topic, status, difficulty, tags },
+      { title, topic, status, difficulty,notes, tags },
       { new: true }
     );
     res.json(updatedProblem);
