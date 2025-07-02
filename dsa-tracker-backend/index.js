@@ -3,6 +3,7 @@ const express=require('express');
 const mongoose=require('mongoose');
 const dotenv=require('dotenv');
 const path = require("path");
+const cors=require('cors');
 
 const app=express();
 dotenv.config();
@@ -10,7 +11,9 @@ dotenv.config();
 const connectDB=require('./config/db');
 connectDB();
 
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, "frontend")));
