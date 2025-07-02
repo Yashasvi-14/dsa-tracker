@@ -12,7 +12,7 @@ const sortSelect=document.getElementById("sort-by");
 let problems= [];
 fetchProblems();
 function fetchProblems(){
-fetch('/api/problems')
+fetch('https://dsa-tracker-ofjd.onrender.com/api/problems')
   .then(res => res.json())
   .then(data => {
     problems = data;
@@ -58,7 +58,7 @@ const editId = form.getAttribute("data-edit-id");
 
   // 🔁 UPDATE EXISTING PROBLEM
   if (editId) {
-    fetch(`/api/problems/${editId}`, {
+    fetch(`https://dsa-tracker-ofjd.onrender.com/api/problems/${editId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ const editId = form.getAttribute("data-edit-id");
   }
 
   // 🆕 CREATE NEW PROBLEM
-  fetch('/api/problems', {
+  fetch('https://dsa-tracker-ofjd.onrender.com/api/problems', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -263,7 +263,7 @@ card.appendChild(notesElement);
 }
 
 function deleteProblem(id) {
-  fetch(`/api/problems/${id}`, {
+  fetch(`https://dsa-tracker-ofjd.onrender.com/api/problems/${id}`, {
     method: 'DELETE'
   })
     .then(res => res.json())
@@ -279,7 +279,7 @@ function deleteProblem(id) {
 window.markAsSolved=async function(id)
  {
     try {
-        const res = await fetch(`/api/problems/${id}`, {
+        const res = await fetch(`https://dsa-tracker-ofjd.onrender.com/api/problems/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: 'Solved' })
@@ -296,7 +296,7 @@ window.markAsSolved=async function(id)
 
 window.markForRevision=async function(id) {
     try {
-        const res = await fetch(`/api/problems/${id}`, {
+        const res = await fetch(`https://dsa-tracker-ofjd.onrender.com/api/problems/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: 'Revise' })

@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 // API routes
 const problems = require('./routes/problems');
-app.use('/api/problems', problems);
+app.use('https://dsa-tracker-ofjd.onrender.com/api/problems', problems);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
