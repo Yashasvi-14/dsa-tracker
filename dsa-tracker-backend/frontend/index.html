@@ -11,14 +11,15 @@
 </head>
 <body>
     <header>
-        <h1 class="text-3xl font-bold text-center text-blue-600 mt-4">DSA Tracker</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-center text-blue-600 mt-4">DSA Tracker</h1>
     </header>
 
-    <div class="max-w-6xl mx-auto px-4 py-6 space-y-4 bg-white p-6 rounded-xl shadow-md mt-6">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 bg-white rounded-xl shadow-md mt-6">
+
         <section class="w-full">
         <h2 class="text-2xl font-bold mb-4 text-gray-800">Add New Problem</h2>
         <div class="bg-white rounded-xl shadow p-4">
-        <form id="form">
+        <form id="form" class="space-y-4">
         <input type="text" id="problem-name" placeholder="Problem Name"
             class="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" />
 
@@ -63,6 +64,19 @@
                 <option value="Hard">Hard</option>
             </select>
             <div>
+                <div class="mb-4">
+  <label for="problem-link" class="block text-sm font-medium text-gray-700">Problem Link:</label>
+  <input 
+    type="url" 
+    id="problem-link" 
+    name="problem-link"
+    placeholder="https://..." 
+    class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" 
+    required
+  />
+</div>
+
+
             <label for="problem-notes" class="block text-sm font-medium text-gray-700">Notes</label>
 <textarea id="problem-notes" name="problem-notes" rows="3" class="mt-1 p-2 block w-full border border-gray-300 rounded-md"></textarea>
      </div>
@@ -130,5 +144,9 @@
     </div>
 
     <script src="script.js" defer></script>
+    <footer class="bg-gray-100 mt-10 p-4 text-center text-sm text-gray-600 rounded-t-xl shadow-inner">
+  Made with ❤️ by Yashasvi • © 2025 DSA Tracker
+</footer>
+
 </body>
 </html>

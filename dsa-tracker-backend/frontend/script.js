@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded",()=>{
 const form=document.getElementById("form");
 const problemsList=document.getElementById("problems-list");
@@ -34,6 +33,7 @@ form.addEventListener("submit", function (e) {
   const topic = document.getElementById("problem-topic").value;
   const status = document.getElementById("problem-status").value;
   const difficulty = document.getElementById("problem-difficulty").value;
+  const link=document.getElementById("problem-link").value;
   const notes = document.getElementById("problem-notes").value.trim();
 
 
@@ -48,6 +48,7 @@ form.addEventListener("submit", function (e) {
     status,
     difficulty,
     notes,
+    link,
     tags: [],
     date: new Date()
   
@@ -168,7 +169,7 @@ function renderProblems() {
     }
 
      filtered.forEach(problem => {
-  const { _id, title, topic, status, difficulty,notes } = problem;
+  const { _id, title, topic, status, difficulty, link, notes } = problem;
   const card = document.createElement("div");
   card.id = `problem-${_id}`;
 
@@ -176,7 +177,15 @@ function renderProblems() {
 
    card.innerHTML = `
   <div class="flex justify-between items-start mb-2">
-    <h2 class="text-lg font-semibold text-gray-900">${problem.title}</h2>
+    <h2 class="text-lg font-semibold text-gray-900">
+  ${
+    problem.link
+      ? `<a href="${problem.link}" target="_blank" class="text-blue-600 hover:underline">${problem.title}</a>`
+      : problem.title
+  }
+</h2>
+
+
     <span class="text-xs px-2 py-1 rounded-full font-semibold
       ${problem.status === "Solved" ? "bg-green-100 text-green-700" :
         problem.status === "Revise" ? "bg-yellow-100 text-yellow-700" :
@@ -196,7 +205,7 @@ function renderProblems() {
 `;
 
   const actions = document.createElement("div");
-actions.className = "flex flex-wrap gap-2 mt-3";
+actions.className = "flex flex-col sm:flex-row gap-2 mt-3";
 
 const baseBtnClass="px-3 py-1 text-sm font-semibold rounded shadow hover:scale-105 transition";
 
@@ -218,6 +227,8 @@ editBtn.onclick = () => {
   document.getElementById("problem-topic").value = topic;
   document.getElementById("problem-status").value = status;
   document.getElementById("problem-difficulty").value = difficulty;
+  document.getElementById("problem-link").value = link || "";
+
   document.getElementById("problem-notes").value = notes || ""; 
   editingIndex = problems.findIndex(p => p._id === _id);
   // Store _id temporarily on the form element for update
@@ -308,7 +319,9 @@ window.editProblem=function(index){
     document.getElementById("topic").value=problem.topic;
     document.getElementById("status").value=problem.status;
     document.getElementById("difficulty").value=problem.difficulty;
+    document.getElementById("problem-link").value = problem.link || "";
     document.getElementById("problem-notes").value = problem.notes || "";
+
 
     editingIndex=index;
     form.querySelector("button").innerText="Update Problem";

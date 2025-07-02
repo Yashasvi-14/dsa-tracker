@@ -19,6 +19,10 @@ const ProblemSchema = new mongoose.Schema({
     enum: ['Unsolved', 'Revise', 'Solved'],
     default: 'Unsolved'
   },
+  link:{
+    type: String,
+    required: true,
+  },
   notes:{
     type: String,
     default: "",
